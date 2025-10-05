@@ -297,25 +297,30 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger, QtEventListener):
 
         self.contacts.fetch_openalias(self.config)
 
+        # Disabled automatic update checks for Palladium wallet
         # If the option hasn't been set yet
-        if not config.cv.AUTOMATIC_CENTRALIZED_UPDATE_CHECKS.is_set():
-            choice = self.question(title="Electrum - " + _("Enable update check"),
-                                   msg=_("For security reasons we advise that you always use the latest version of Electrum.") + " " +
-                                       _("Would you like to be notified when there is a newer version of Electrum available?"))
-            config.AUTOMATIC_CENTRALIZED_UPDATE_CHECKS = bool(choice)
+        # if not config.cv.AUTOMATIC_CENTRALIZED_UPDATE_CHECKS.is_set():
+        #     choice = self.question(title="Electrum - " + _("Enable update check"),
+        #                            msg=_("For security reasons we advise that you always use the latest version of Electrum.") + " " +
+        #                                _("Would you like to be notified when there is a newer version of Electrum available?"))
+        #     config.AUTOMATIC_CENTRALIZED_UPDATE_CHECKS = bool(choice)
+
+        # Force disable automatic update checks for Palladium
+        config.AUTOMATIC_CENTRALIZED_UPDATE_CHECKS = False
 
         self._update_check_thread = None
-        if config.AUTOMATIC_CENTRALIZED_UPDATE_CHECKS:
-            # The references to both the thread and the window need to be stored somewhere
-            # to prevent GC from getting in our way.
-            def on_version_received(v):
-                if UpdateCheck.is_newer(v):
-                    self.update_check_button.setText(_("Update to Electrum {} is available").format(v))
-                    self.update_check_button.clicked.connect(lambda: self.show_update_check(v))
-                    self.update_check_button.show()
-            self._update_check_thread = UpdateCheckThread()
-            self._update_check_thread.checked.connect(on_version_received)
-            self._update_check_thread.start()
+        # Disabled automatic update check functionality
+        # if config.AUTOMATIC_CENTRALIZED_UPDATE_CHECKS:
+        #     # The references to both the thread and the window need to be stored somewhere
+        #     # to prevent GC from getting in our way.
+        #     def on_version_received(v):
+        #         if UpdateCheck.is_newer(v):
+        #             self.update_check_button.setText(_("Update to Electrum {} is available").format(v))
+        #             self.update_check_button.clicked.connect(lambda: self.show_update_check(v))
+        #             self.update_check_button.show()
+        #     self._update_check_thread = UpdateCheckThread()
+        #     self._update_check_thread.checked.connect(on_version_received)
+        #     self._update_check_thread.start()
 
     def run_coroutine_dialog(self, coro, text):
         """ run coroutine in a waiting dialog, with a Cancel button that cancels the coroutine"""
@@ -1837,12 +1842,13 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger, QtEventListener):
         self.search_box.hide()
         sb.addPermanentWidget(self.search_box)
 
-        self.update_check_button = QPushButton("")
-        self.update_check_button.setFlat(True)
-        self.update_check_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.update_check_button.setIcon(read_QIcon("update.png"))
-        self.update_check_button.hide()
-        sb.addPermanentWidget(self.update_check_button)
+        # Removed update check button for Palladium wallet
+        # self.update_check_button = QPushButton("")
+        # self.update_check_button.setFlat(True)
+        # self.update_check_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        # self.update_check_button.setIcon(read_QIcon("update.png"))
+        # self.update_check_button.hide()
+        # sb.addPermanentWidget(self.update_check_button)
 
         self.password_required_button = QPushButton(_('Password required'))
         self.password_required_button.setFlat(True)
