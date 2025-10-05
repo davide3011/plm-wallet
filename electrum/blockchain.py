@@ -312,6 +312,9 @@ class Blockchain(Logger):
             raise InvalidHeader("prev hash mismatch: %s vs %s" % (prev_hash, header.get('prev_block_hash')))
         if constants.net.TESTNET:
             return
+        # Palladium uses dynamic difficulty, skip difficulty validation
+        if constants.net.NET_NAME == "palladium":
+            return
         bits = cls.target_to_bits(target)
         if bits != header.get('bits'):
             raise InvalidHeader("bits mismatch: %s vs %s" % (bits, header.get('bits')))
@@ -532,6 +535,9 @@ class Blockchain(Logger):
     def get_target(self, index: int) -> int:
         # compute target from chunk x, used in chunk x+1
         if constants.net.TESTNET:
+            return 0
+        # Palladium uses dynamic difficulty that updates every block, skip retargeting
+        if constants.net.NET_NAME == "palladium":
             return 0
         if index == -1:
             return MAX_TARGET
