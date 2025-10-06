@@ -69,17 +69,18 @@ WizardComponent {
     function setDerivationPath() {
         var p = isMultisig ? getMultisigScriptTypePurposeDict() : getScriptTypePurposeDict()
         var scripttype = scripttypegroup.checkedButton.scripttype
+        var coinType = Network.isTestNet ? 1 : 746  // Use 746 for palladiummainnet
         if (isMultisig) {
             if (scripttype == 'p2sh')
                 derivationpathtext.text = "m/" + p[scripttype] + "'/0"
             else
                 derivationpathtext.text = "m/" + p[scripttype] + "'/"
-                + (Network.isTestNet ? 1 : 0) + "'/0'/"
+                + coinType + "'/0'/"
                 + (scripttype == 'p2wsh' ? 2 : 1) + "'"
         } else {
             derivationpathtext.text =
                 "m/" + p[scripttypegroup.checkedButton.scripttype] + "'/"
-                + (Network.isTestNet ? 1 : 0) + "'/0'"
+                + coinType + "'/0'"
         }
     }
 
