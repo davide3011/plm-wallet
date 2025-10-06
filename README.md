@@ -1,10 +1,8 @@
-# Electrum - Lightweight Bitcoin client
+# PLM-Wallet - Lightweight Palladium client based on Electrum
 
 ```
 Licence: MIT Licence
-Author: Thomas Voegtlin
 Language: Python (>= 3.10)
-Homepage: https://electrum.org/
 ```
 
 [![Build Status](https://api.cirrus-ci.com/github/spesmilo/electrum.svg?branch=master)](https://cirrus-ci.com/github/spesmilo/electrum)
@@ -14,10 +12,7 @@ Homepage: https://electrum.org/
 
 ## Getting started
 
-_(If you've come here looking to simply run Electrum,
-[you may download it here](https://electrum.org/#download).)_
-
-Electrum itself is pure Python, and so are most of the required dependencies,
+PLM-Wallet itself is pure Python, and so are most of the required dependencies,
 but not everything. The following sections describe how to run from source, but here
 is a TL;DR:
 
