@@ -1,0 +1,55 @@
+# Release 1.0.0 (8-10-2025)
+
+PLM-Wallet 1.0.0 is the first release of the Palladium wallet, based on Electrum. This version introduces complete support for the Palladium blockchain with all the necessary features for a lightweight and secure wallet.
+
+ * General:
+   - new: Palladium network support with PalladiumMainnet class and all necessary network constants
+   - new: Palladium is now the default network for the wallet
+   - new: BIP21 URI scheme support for 'palladium:' payment URIs
+   - new: BIP44 coin type 746 configured for Palladium according to BIP44 standards
+   - new: dynamic difficulty support for Palladium blockchain that updates every block
+   - changed: disabled standard difficulty validation to adapt to Palladium's mechanism
+   - new: server configurations specific to Palladium network
+   - changed: complete rebranding from "Bitcoin" to "Palladium" throughout the interface
+   - changed: terminology updates: "Import Bitcoin addresses" → "Import palladium addresses"
+   - changed: currency references updated from "bitcoins" to "palladiums"
+   - new: updated all graphical assets to reflect Palladium branding
+   - new: HD wallet derivation path updated with coin type 746 for Palladium
+   - changed: Android package domain configured as 'org.electrum.palladium'
+   - changed: replaced BTC references with PLM in unit configurations
+   - changed: disabled automatic update checks for greater control
+   - new: maintained all Electrum's cryptographic security
+   - new: complete hardware wallet support with Palladium
+
+ * Qt GUI (desktop):
+   - changed: complete interface rebranding to Palladium
+   - changed: window titles updated from "Bitcoin" to "Palladium"
+   - changed: import dialog updated to "Import Palladium Addresses or Private Keys"
+
+ * QML GUI (Android):
+   - changed: About dialog updated to "About Palladium Wallet"
+   - changed: wallet type selection updated to "Import Palladium addresses or private keys"
+   - new: correct coin type 746 used in derivation path for Palladium
+
+ * Terms of Use:
+   - changed: updated to reflect that the wallet is based on Electrum
+   - changed: clarified interaction with Palladium blockchain instead of Bitcoin
+   - changed: generalized support references from "Electrum support" to "wallet support"
+
+Technical specifications:
+ * Network Name: 'palladium'
+ * SEGWIT HRP: 'plm'
+ * BIP44 Coin Type: 746
+ * Default Ports: TCP 50001, SSL 50002
+ * Genesis Block: inherits from Bitcoin for initial compatibility
+ * Difficulty: dynamic, updates per block
+
+Compatibility:
+ * Python >= 3.10
+ * Based on Electrum 4.x
+ * Platforms: Windows, Linux, macOS, Android
+ * Hardware Wallets: Ledger, Trezor, KeepKey
+
+This project is based on Electrum, developed by the Electrum team. We thank all Electrum contributors for creating a solid foundation for this Palladium wallet.
+
+---
