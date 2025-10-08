@@ -73,10 +73,9 @@ setup(
     include_package_data=True,
     scripts=['electrum/electrum'],
     data_files=data_files,
-    description="Lightweight Bitcoin Wallet",
-    author="Thomas Voegtlin",
-    author_email="thomasv@electrum.org",
+    description="Lightweight Palladium Wallet",
+    author="Davide Grilli",
+    author_email="davide.grilli@outlook.com",
     license="MIT Licence",
-    url="https://electrum.org",
     long_description="""Lightweight Bitcoin Wallet""",
 )
